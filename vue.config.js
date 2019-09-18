@@ -1,11 +1,11 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   chainWebpack: config => {
-    const apiClient = 'mock';
+    const apiClient = "mock";
     config.resolve.alias.set(
-      'api-client',
+      "api-client",
       path.resolve(__dirname, `src/api/${apiClient}`)
-    )
+    );
   }
-}
+};

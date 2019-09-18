@@ -1,24 +1,24 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import client from 'api-client';
+import Vue from "vue";
+import Vuex from "vuex";
+import client from "api-client";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    order: {}
+    orderData: {}
   },
   mutations: {
-    setOrder(state, order) {
-      state.order = order
+    setOrder(state, orderData) {
+      state.orderData = orderData;
     }
   },
 
   actions: {
-    fetchOrder({commit}) {
-      return client
-        .fetchOrder()
-        .then(order => commit('setOrder', order))
+    fetchOrder({ commit }) {
+      return client.fetchOrder().then(orderData => {
+        return commit("setOrder", orderData);
+      });
     }
   }
-})
+});
