@@ -3,6 +3,9 @@
     <button type="button" class="btn-blue" @click="showModal">
       Create Order
     </button>
+    <div v-if="state.stateOrder.before_submit_price" class="order-price">
+      Your price: {{ this.state.stateOrder.before_submit_price }} $
+    </div>
     <div v-if="loading">Loading…</div>
     <order-component
       v-else-if="order"
@@ -38,9 +41,8 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-    changeOrderPrice(event) {
-      let { value } = event.target;
-      this.state.stateOrder[name] = value;
+    changeOrderPrice(price) {
+      this.state.stateOrder.before_submit_price = price;
     }
   },
   computed: {

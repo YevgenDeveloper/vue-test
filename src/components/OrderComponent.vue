@@ -150,7 +150,7 @@ export default {
     images: Object,
     orderDetails: Array,
     options: Array,
-    onChange: Function
+    onSubmit: Function
   },
   methods: {
     close() {
@@ -198,7 +198,7 @@ export default {
     },
     checkForm(e) {
       this.errors = {};
-
+      e.preventDefault();
       if (!this.validUrl(this.source)) this.errors.source = "URL not valid!";
 
       if (this.budget < 2 || this.budget > 500)
@@ -216,10 +216,9 @@ export default {
           "Instructions should be text with no more than 30 words!";
 
       if (!Object.keys(this.errors).length) {
-        return true;
+        this.onSubmit(this.price);
+        this.$emit("close");
       }
-
-      e.preventDefault();
     }
   },
   computed: {
